@@ -50,19 +50,6 @@ CREATE TABLE public.rol (
 
 
 --
--- Name: sesion; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sesion (
-    id_sesion uuid DEFAULT gen_random_uuid() NOT NULL,
-    id_usuario uuid NOT NULL,
-    hash_token character varying(64) NOT NULL,
-    expira_en timestamp without time zone NOT NULL,
-    revocada boolean DEFAULT false NOT NULL
-);
-
-
---
 -- Name: usuario; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -124,22 +111,6 @@ ALTER TABLE ONLY public.rol
 
 
 --
--- Name: sesion sesion_hash_token_key; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sesion
-    ADD CONSTRAINT sesion_hash_token_key UNIQUE (hash_token);
-
-
---
--- Name: sesion sesion_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sesion
-    ADD CONSTRAINT sesion_pkey PRIMARY KEY (id_sesion);
-
-
---
 -- Name: usuario_rol uq_usuario_rol; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -177,14 +148,6 @@ ALTER TABLE ONLY public.usuario
 
 ALTER TABLE ONLY public.usuario_rol
     ADD CONSTRAINT usuario_rol_pkey PRIMARY KEY (id_usuario_rol);
-
-
---
--- Name: sesion fk_sesion_usuario; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sesion
-    ADD CONSTRAINT fk_sesion_usuario FOREIGN KEY (id_usuario) REFERENCES public.usuario(id_usuario);
 
 
 --
