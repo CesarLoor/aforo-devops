@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: aforo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: aforo
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: aforo_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - aforo_pgdata:/var/lib/postgresql/data
+volumes:
+  aforo_pgdata:
